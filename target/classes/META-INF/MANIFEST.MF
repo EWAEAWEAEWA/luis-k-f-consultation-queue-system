@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 21
+Class-Path: flatlaf-3.4.1.jar
+Main-Class: com.consultation.Main
+Created-By: Maven Integration for Eclipse
+

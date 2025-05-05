@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.tip.osconsult</groupId>
+  <artifactId>kf-consultation-queue-system</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging> <!-- Specify packaging explicitly (usually jar) -->
+
+  <name>kf-consultation-queue-system</name> <!-- Optional: Add a project name -->
+  <description>A consultation queue system application.</description> <!-- Optional: Add a description -->
+
+  <properties>
+    <!-- Set the Java version you want to target for compilation -->
+    <!-- Recommended: 11, 17, or 21. Avoid 8 if possible. -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <!-- Define the main class for execution -->
+    <exec.mainClass>com.consultation.Main</exec.mainClass>
+    <!-- Ensure consistent build encoding -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Define FlatLaf version as a property for easy updates -->
+    <flatlaf.version>3.4.1</flatlaf.version>
+  </properties>
+
+  <dependencies>
+    <!-- FlatLaf Core Dependency -->
+    <dependency>
+        <groupId>com.formdev</groupId>
+        <artifactId>flatlaf</artifactId>
+        <version>${flatlaf.version}</version> <!-- Use the property defined above -->
+    </dependency>
+
+    <!-- Optional: FlatLaf IntelliJ Themes -->
+    <!-- Uncomment if you want themes like FlatIntelliJLaf, FlatMacDarkLaf, etc. -->
+    <!--
+    <dependency>
+        <groupId>com.formdev</groupId>
+        <artifactId>flatlaf-intellij-themes</artifactId>
+        <version>${flatlaf.version}</version>
+    </dependency>
+    -->
+
+    <!-- Add other dependencies your project might need here -->
+    <!-- e.g., logging framework, database drivers, etc. -->
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Maven Compiler Plugin Configuration -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version> <!-- Use a recent version -->
+        <configuration>
+          <!-- Ensure it uses the Java versions defined in properties -->
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+
+      <!-- Maven JAR Plugin (to make executable JAR - Optional but common) -->
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.3.0</version>
+          <configuration>
+              <archive>
+                  <manifest>
+                      <addClasspath>true</addClasspath>
+                      <!-- Specify the main class for the executable JAR -->
+                      <mainClass>${exec.mainClass}</mainClass>
+                  </manifest>
+              </archive>
+          </configuration>
+      </plugin>
+
+       <!-- Maven Surefire Plugin (for running tests - Optional but good practice) -->
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-surefire-plugin</artifactId>
+         <version>3.1.2</version>
+       </plugin>
+
+        <!-- Exec Maven Plugin (used by NetBeans Run action - Keep if needed) -->
+        <!-- Your original command uses this, so ensure it's configured -->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version> <!-- Version from your command -->
+            <configuration>
+                <!-- Configuration might be needed here depending on how NetBeans uses it -->
+                 <mainClass>${exec.mainClass}</mainClass>
+            </configuration>
+        </plugin>
+
+    </plugins>
+  </build>
+
+</project>
